@@ -29,6 +29,8 @@ Then just call .w (width), .h (height), .sp (font-size):
 
 ## How to Install
 
+Add this line under dependencies in pubspec.yaml
+
 <pre>
  responsive_size:
     git:
