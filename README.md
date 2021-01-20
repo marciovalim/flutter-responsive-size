@@ -1,4 +1,4 @@
-# responsive_size
+# Responsive Size
 
 A package that helps create responsive UI in Flutter.
 
@@ -25,4 +25,12 @@ Then just call .w (width), .h (height), .sp (font-size):
       style: TextStyle(fontSize: 12.sp), // 12 is the original design fontSize
     ), 
  );
+</pre>
+
+## How to Install
+
+<pre>
+ responsive_size:
+    git:
+      url: git://github.com/marciovalim/flutter-responsive-size.git
 </pre>
