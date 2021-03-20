@@ -1,11 +1,11 @@
 name: responsive_size
 description: A flutter package that helps create responsive screens
-version: 0.0.1
+version: 0.0.4
 author: https://github.com/marciovalim
 homepage: https://github.com/marciovalim/flutter-responsive-size
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
   flutter: ">=1.17.0"
 
 dependencies:

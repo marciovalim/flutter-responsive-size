@@ -5,26 +5,26 @@ import 'dart:ui';
 export 'responsive_size_ext.dart';
 
 class ResponsiveSize {
-  static ResponsiveSize _instance;
+  static ResponsiveSize? _instance;
   static const int defaultWidth = 1080;
   static const int defaultHeight = 1920;
 
-  num desingWidthPx;
-  num designHeightPx;
-  bool allowFontScaling;
+  late num desingWidthPx;
+  late num designHeightPx;
+  late bool allowFontScaling;
 
-  static double _screenWidth;
-  static double _screenHeight;
-  static double _pixelRatio;
-  static double _statusBarHeight;
-  static double _bottomBarHeight;
-  static double _textScaleFactor;
+  static double? _screenWidth;
+  static double? _screenHeight;
+  static double? _pixelRatio;
+  static double? _statusBarHeight;
+  static double? _bottomBarHeight;
+  static double? _textScaleFactor;
 
   ResponsiveSize._();
 
   factory ResponsiveSize() {
     assert(_instance != null, 'Don\'t forget to init ResponsiveSize');
-    return _instance;
+    return _instance!;
   }
 
   static void init({
@@ -35,9 +35,9 @@ class ResponsiveSize {
     if (_instance == null) {
       _instance = ResponsiveSize._();
     }
-    _instance.desingWidthPx = designWidth;
-    _instance.designHeightPx = designHeight;
-    _instance.allowFontScaling = allowFontScaling;
+    _instance!.desingWidthPx = designWidth;
+    _instance!.designHeightPx = designHeight;
+    _instance!.allowFontScaling = allowFontScaling;
     _pixelRatio = window.devicePixelRatio;
     _screenWidth = window.physicalSize.width;
     _screenHeight = window.physicalSize.height;
@@ -46,28 +46,28 @@ class ResponsiveSize {
     _textScaleFactor = window.textScaleFactor;
   }
 
-  static double get textScaleFactor => _textScaleFactor;
+  static double? get textScaleFactor => _textScaleFactor;
 
-  static double get pixelRatio => _pixelRatio;
+  static double? get pixelRatio => _pixelRatio;
 
-  static double get screenWidth => _screenWidth / _pixelRatio;
+  static double get screenWidth => _screenWidth! / _pixelRatio!;
 
-  static double get screenHeight => _screenHeight / _pixelRatio;
+  static double get screenHeight => _screenHeight! / _pixelRatio!;
 
-  static double get screenWidthPx => _screenWidth;
+  static double? get screenWidthPx => _screenWidth;
 
-  static double get screenHeightPx => _screenHeight;
+  static double? get screenHeightPx => _screenHeight;
 
-  static double get statusBarHeight => _statusBarHeight / _pixelRatio;
+  static double get statusBarHeight => _statusBarHeight! / _pixelRatio!;
 
-  static double get statusBarHeightPx => _statusBarHeight;
+  static double? get statusBarHeightPx => _statusBarHeight;
 
-  static double get bottomBarHeight => _bottomBarHeight;
+  static double? get bottomBarHeight => _bottomBarHeight;
 
   double get scaleWidth => screenWidth / desingWidthPx;
 
   double get scaleHeight =>
-      (_screenHeight - _statusBarHeight - _bottomBarHeight) / designHeightPx;
+      (_screenHeight! - _statusBarHeight! - _bottomBarHeight!) / designHeightPx;
 
   double get scaleText => scaleWidth;
 
@@ -89,12 +89,12 @@ class ResponsiveSize {
   ///Font size adaptation method
   ///@param [fontSize] The size of the font on the UI design, in px.
   ///@param [allowFontScaling]
-  num setSp(num fontSize, {bool allowFontScalingSelf}) =>
+  num setSp(num fontSize, {bool? allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
               ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor))
+              : ((fontSize * scaleText) / _textScaleFactor!))
           : (allowFontScalingSelf
               ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor));
+              : ((fontSize * scaleText) / _textScaleFactor!));
 }
