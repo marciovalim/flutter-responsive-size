@@ -12,13 +12,17 @@ class ResponsiveSize {
   late num desingWidthPx;
   late num designHeightPx;
   late bool allowFontScaling;
+  late num defaultFontSize;
 
-  static double? _screenWidth;
-  static double? _screenHeight;
-  static double? _pixelRatio;
-  static double? _statusBarHeight;
-  static double? _bottomBarHeight;
-  static double? _textScaleFactor;
+  static late double _screenWidth;
+  static late double _screenHeight;
+  static late double _widthBlock;
+  static late double _heightBlock;
+  static late double _spBlock;
+  static late double _pixelRatio;
+  static late double _statusBarHeight;
+  static late double _bottomBarHeight;
+  static late double _textScaleFactor;
 
   ResponsiveSize._();
 
@@ -31,6 +35,7 @@ class ResponsiveSize {
     num designWidth = defaultWidth,
     num designHeight = defaultHeight,
     bool allowFontScaling = false,
+    num defaultFontSize = 16,
   }) {
     if (_instance == null) {
       _instance = ResponsiveSize._();
@@ -38,27 +43,37 @@ class ResponsiveSize {
     _instance!.desingWidthPx = designWidth;
     _instance!.designHeightPx = designHeight;
     _instance!.allowFontScaling = allowFontScaling;
+    _instance!.defaultFontSize = defaultFontSize;
     _pixelRatio = window.devicePixelRatio;
     _screenWidth = window.physicalSize.width;
     _screenHeight = window.physicalSize.height;
+    _widthBlock = screenWidth / 100;
+    _heightBlock = screenHeight / 100;
     _statusBarHeight = window.padding.top;
     _bottomBarHeight = window.padding.bottom;
     _textScaleFactor = window.textScaleFactor;
+    _spBlock = _instance!.setSp(_instance!.defaultFontSize) as double;
   }
 
   static double? get textScaleFactor => _textScaleFactor;
 
   static double? get pixelRatio => _pixelRatio;
 
-  static double get screenWidth => _screenWidth! / _pixelRatio!;
+  static double get screenWidth => _screenWidth / _pixelRatio;
 
-  static double get screenHeight => _screenHeight! / _pixelRatio!;
+  static double get screenHeight => _screenHeight / _pixelRatio;
+
+  static double get widthBlock => _widthBlock;
+
+  static double get heightBlock => _heightBlock;
+
+  static double get spBlock => _spBlock;
 
   static double? get screenWidthPx => _screenWidth;
 
   static double? get screenHeightPx => _screenHeight;
 
-  static double get statusBarHeight => _statusBarHeight! / _pixelRatio!;
+  static double get statusBarHeight => _statusBarHeight / _pixelRatio;
 
   static double? get statusBarHeightPx => _statusBarHeight;
 
@@ -67,7 +82,7 @@ class ResponsiveSize {
   double get scaleWidth => screenWidth / desingWidthPx;
 
   double get scaleHeight =>
-      (_screenHeight! - _statusBarHeight! - _bottomBarHeight!) / designHeightPx;
+      (_screenHeight - _statusBarHeight - _bottomBarHeight) / designHeightPx;
 
   double get scaleText => scaleWidth;
 
@@ -93,8 +108,8 @@ class ResponsiveSize {
       allowFontScalingSelf == null
           ? (allowFontScaling
               ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor!))
+              : ((fontSize * scaleText) / _textScaleFactor))
           : (allowFontScalingSelf
               ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor!));
+              : ((fontSize * scaleText) / _textScaleFactor));
 }
