@@ -9,3 +9,7 @@
 ## [0.0.5]
 
 - Added spBlock, widthBlock, heightBlock
+
+## [0.0.6]
+
+- Added spBlock, widthBlock, heightBlock to globals
