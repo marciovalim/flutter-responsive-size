@@ -6,13 +6,13 @@ export 'responsive_size_ext.dart';
 
 class ResponsiveSize {
   static ResponsiveSize? _instance;
-  static const int defaultWidth = 1080;
-  static const int defaultHeight = 1920;
+  static const defaultWidth = 1080.0;
+  static const defaultHeight = 1920.0;
 
-  late num desingWidthPx;
-  late num designHeightPx;
+  late double desingWidthPx;
+  late double designHeightPx;
   late bool allowFontScaling;
-  late num defaultFontSize;
+  late double defaultFontSize;
 
   static late double _screenWidth;
   static late double _screenHeight;
@@ -32,10 +32,10 @@ class ResponsiveSize {
   }
 
   static void init({
-    num designWidth = defaultWidth,
-    num designHeight = defaultHeight,
+    double designWidth = defaultWidth,
+    double designHeight = defaultHeight,
     bool allowFontScaling = false,
-    num defaultFontSize = 16,
+    double defaultFontSize = 16,
   }) {
     if (_instance == null) {
       _instance = ResponsiveSize._();
@@ -90,21 +90,21 @@ class ResponsiveSize {
   /// Adapted to the device width of the UI Design.
   /// Height can also be adapted according to this to ensure no deformation ,
   /// if you want a square
-  num setWidth(num width) => width * scaleWidth;
+  double setWidth(double width) => width * scaleWidth;
 
   /// Height function
   /// Highly adaptable to the device according to UI Design
   /// It is recommended to use this method to achieve a high degree of adaptation
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
-  num setHeight(num height) => height * scaleHeight;
+  double setHeight(double height) => height * scaleHeight;
 
   ///FontSize function
   ///@param [fontSize] UI in px.
   ///Font size adaptation method
   ///@param [fontSize] The size of the font on the UI design, in px.
   ///@param [allowFontScaling]
-  num setSp(num fontSize, {bool? allowFontScalingSelf}) =>
+  double setSp(double fontSize, {bool? allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
               ? (fontSize * scaleText)

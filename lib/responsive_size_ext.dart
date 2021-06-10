@@ -1,21 +1,21 @@
 import 'responsive_size.dart';
 
 extension ScreenUtilExtension on num {
-  num get w => ResponsiveSize().setWidth(this);
+  double get w => ResponsiveSize().setWidth(this as double);
 
-  num get h => ResponsiveSize().setHeight(this);
+  double get h => ResponsiveSize().setHeight(this as double);
 
-  num get sp => ResponsiveSize().setSp(this);
+  double get sp => ResponsiveSize().setSp(this as double);
 }
 
-num getWidth(num n) => ResponsiveSize().setWidth(n);
+double getWidth(double n) => ResponsiveSize().setWidth(n);
 
-num getHeight(num n) => ResponsiveSize().setHeight(n);
+double getHeight(double n) => ResponsiveSize().setHeight(n);
 
-num getSp(num n) => ResponsiveSize().setSp(n);
+double getSp(double n) => ResponsiveSize().setSp(n);
 
-num get widthBlock => ResponsiveSize.widthBlock;
+double get widthBlock => ResponsiveSize.widthBlock;
 
-num get heightBlock => ResponsiveSize.heightBlock;
+double get heightBlock => ResponsiveSize.heightBlock;
 
-num get spBlock => ResponsiveSize.spBlock;
+double get spBlock => ResponsiveSize.spBlock;
